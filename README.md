@@ -31,14 +31,14 @@ none)
 
 
 ## Usage
-
-- hosts: network
+```
+- hosts: webservers
   roles:
     - role: ansible-role-lsyncd-multimaster
       lsyncd_fanout_group: 'webservers'
       lsyncd_fanout_interface: 'em1'
       lsyncd_fanout_directories:
         - '/data'
-
+```
 This will sync directory `/data` on all hosts in the 'webservers' group, using the IP address on `em1`. You can
 set multiple directories if you have several of them to sync.

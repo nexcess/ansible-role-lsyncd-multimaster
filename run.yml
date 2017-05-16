@@ -1,8 +1,0 @@
-- hosts: network
-  roles:
-    - role: ansible-role-lsyncd-fanout
-      lsyncd_fanout_slaves_group: 'network'
-      lsyncd_fanout_slaves_interface: 'bond1'
-      lsyncd_fanout_directories:
-        - '/data'
-        - '/test_kolla'
