@@ -5,12 +5,6 @@
     enablerepo: epel
     update_cache: yes
 
-- name: 'Create lsyncd config'
-  template:
-    src: lsyncd.conf.lua.j2
-    dest: /etc/lsyncd.conf
-  notify: Restart lsyncd
-
 - name: 'Create lsyncd shared paths'
   file:
     path: "{{ item }}"
@@ -19,6 +13,12 @@
     group: "root"
     mode: "0750"
   with_items: "{{ lsyncd_fanout_directories }}"
+
+- name: 'Create lsyncd config'
+  template:
+    src: lsyncd.conf.lua.j2
+    dest: /etc/lsyncd.conf
+  notify: Restart lsyncd
 
 - name: 'Set sysctl inotify options for real-time file monitoring'
   sysctl:
