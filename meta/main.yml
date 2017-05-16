@@ -1,0 +1,16 @@
+---
+galaxy_info:
+  author: "Ryan MacDonald"
+  description: "lsyncd role with multi-master fanout"
+  company: "Nexcess.net LLC"
+  license: "MIT"
+  min_ansible_version: "2.0"
+  platforms:
+    - name: EL
+      versions: 
+        - 7
+  categories:
+  - filesystem
+dependencies: 
+  - name: "nexcess.repo-epel"
+    src: "git+https://github.com/nexcess/ansible-role-repo-epel.git"

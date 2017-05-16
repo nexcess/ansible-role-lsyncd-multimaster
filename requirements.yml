@@ -1,0 +1,2 @@
+  - name: "nexcess.repo-epel"
+    src: "git+https://github.com/nexcess/ansible-role-repo-epel.git"

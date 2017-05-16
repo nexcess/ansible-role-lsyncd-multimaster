@@ -1,0 +1,37 @@
+- name: 'Install lsyncd from epel repo'
+  yum:
+    name: lsyncd
+    state: present
+    enablerepo: epel
+    update_cache: yes
+
+- name: 'Create lsyncd config'
+  template:
+    src: lsyncd.conf.lua.j2
+    dest: /etc/lsyncd.conf
+  notify: Restart lsyncd
+
+- name: 'Create lsyncd shared paths'
+  file:
+    path: "{{ item }}"
+    state: "directory"
+    owner: "root"
+    group: "root"
+    mode: "0750"
+  with_items: "{{ lsyncd_fanout_directories }}"
+
+- name: 'Set sysctl inotify options for real-time file monitoring'
+  sysctl:
+    name="{{ item.key }}"
+    value="{{ item.value }}"
+    state="present"
+    sysctl_set="yes"
+    ignoreerrors="yes"
+    reload="yes"
+  with_items:
+    - key: "fs.inotify.max_user_watches"
+      value: "{{ inotify_max_user_watches }}"
+    - key: "fs.inotify.max_user_instances"
+      value: "{{ inotify_max_user_instances }}"
+    - key: "fs.inotify.max_queued_events"
+      value: "{{ inotify_max_queued_events }}"

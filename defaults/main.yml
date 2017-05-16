@@ -1,0 +1,9 @@
+lsyncd_fanout_delay: 1
+lsyncd_fanout_max_processes: 4
+lsyncd_fanout_ssh_options: "-o StrictHostKeyChecking=no"
+lsyncd_fanout_rsync_delete: false
+lsyncd_fanout_rsync_options: "-lturs"
+
+inotify_max_user_watches: 524288
+inotify_max_user_instances: 256
+inotify_max_queued_events: 16384
